@@ -1,15 +1,18 @@
-from ia import criar_chat
-from database import inicializar_banco, salvar_mensagem
+import os
+import warnings
+from ia import obter_chat_com_memoria
+from database import salvar_mensagem
 
+os.environ["PYTHONWARNINGS"] = "ignore"
+os.environ["LANGCHAIN_TRACING_V2"] = "false"
+warnings.filterwarnings("ignore")
 
-print("Inicializando banco de dados...")
-inicializar_banco()
-
-print("CHATBOT IA (Terminal)")
-
-chat = criar_chat()
-
+print("CHATBOT IA com LangChain e Memória (Terminal)")
 print("Digite 'sair' para encerrar.\n")
+
+session_id = "usuario_local_01"
+
+chat_bot = obter_chat_com_memoria(session_id)
 
 while True:
     mensagem = input("Você: ")
@@ -18,16 +21,17 @@ while True:
         print("Encerrando...")
         break
 
-
     salvar_mensagem("Usuário", mensagem)
 
     try:
-        resposta = chat.send_message(mensagem)
-        print("IA:", resposta.text)
+        resposta = chat_bot.invoke(
+            {"input": mensagem},
+            config={"configurable": {"session_id": session_id}}
+        )
+        
+        print("IA:", resposta.content)
 
-
-        salvar_mensagem("IA", resposta.text)
+        salvar_mensagem("IA", resposta.content)
 
     except Exception as e:
-        print("Erro:", e)
-        print("Dica: pode ser limite da API (quota)")
+        print(f"Erro: {e}")

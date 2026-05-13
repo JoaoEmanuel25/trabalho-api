@@ -1,4 +1,4 @@
-GEMINI_API_KEY = "AIzaSyABNnnt58U3G6HJ1pGdRv30Y1iG2yiV_bc"
+GEMINI_API_KEY = "AIzaSyDBC6SfYtHTed43kXtMSOtkByjnVY4weis"
 
 DB_HOST = "localhost"
 DB_NAME = "bancoapi"        # Nome da base de dados que criar no pgAdmin

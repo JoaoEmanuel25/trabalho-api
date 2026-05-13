@@ -1,2 +1,5 @@
 google-genai
 psycopg2-binary
+langchain
+langchain-google-genai
+langchain-community

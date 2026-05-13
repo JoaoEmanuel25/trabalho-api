@@ -33,9 +33,7 @@ def inicializar_banco():
     conexao.close()
 
 def salvar_mensagem(remetente, conteudo):
-    """
-    2 e 3. Conexão e Inserção de dados na tabela.
-    """
+
     conexao = conectar()
     cursor = conexao.cursor()
     
