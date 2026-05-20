@@ -18,7 +18,6 @@ def inicializar_banco():
     conexao = conectar()
     cursor = conexao.cursor()
     
-    # 1. Criação da tabela (PostgreSQL usa SERIAL para auto-incremento)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS mensagens (
             id SERIAL PRIMARY KEY,
